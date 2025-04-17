@@ -5,7 +5,6 @@ import socket
 import time
 from termcolor import cprint, colored
 import pyfiglet
-from webbrowser import open as web_open
 from concurrent.futures import ThreadPoolExecutor
 
 # Terminal Colors
@@ -32,7 +31,7 @@ def dht_hackers_banner():
     print(f"{B} https://youtube.com/@dht-hackers_10")
     print(f"{C}────────────────────────────────────────────────────────────{N}")
     time.sleep(2)
-    web_open("https://youtube.com/@dht-hackers_10")
+    os.system("termux-open-url https://youtube.com/@dht-hackers_10")
     input(f"{Y}Press Enter after subscribing to continue...{N}")
     clear()
 
@@ -52,7 +51,6 @@ def ip_info(ip):
     except requests.RequestException as e:
         return {"status": "fail", "message": str(e)}
 
-# Threaded port scanner
 def scan_port(ip, port):
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -112,7 +110,7 @@ def main():
         cprint("\n[-] No common ports open or scan blocked.", "red")
 
     save_report(data)
-    input("press enter...")
+    input(f"\n{Y}Press Enter to continue...{N}")
     return True
 
 if __name__ == "__main__":
